@@ -34,11 +34,12 @@ img {
     /* outline: 1px solid red; */
 }
 .search-form {
+    width: 250px;
    display: flex;
    justify-content: center;
 }
 .search_input {
-    /* width: 100%; */
+    width: 300px;
     padding-left: 16px;
     margin-bottom: 20px;
     height: 50px;
