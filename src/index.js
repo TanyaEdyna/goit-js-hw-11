@@ -1,20 +1,60 @@
 import axios from "axios";
-BASE_URL = 'https://pixabay.com/api';
-API_KEY = '35093181-a8049340061a9729261476a01'
+import { fetchimages } from './js/fetchimages';
+import Notiflix from 'notiflix';
+import SimpleLightbox from "simplelightbox";
+import SimpleLightbox from "simplelightbox/dist/simple-lightbox.esm";
 
-// Список параметрів рядка запиту, які тобі обов'язково необхідно вказати:
+const BASE_URL = 'https://pixabay.com/api';
+const API_KEY = '35093181-a8049340061a9729261476a01';
 
-// key - твій унікальний ключ доступу до API.
-// q - термін для пошуку. Те, що буде вводити користувач.
-// image_type - тип зображення. На потрібні тільки фотографії, тому постав значення photo.
-// orientation - орієнтація фотографії. Постав значення horizontal.
-// safesearch - фільтр за віком. Постав значення true.
-// У відповіді буде масив зображень, що задовольнили критерії параметрів запиту. Кожне зображення описується об'єктом, з якого тобі цікаві тільки наступні властивості:
+const refs = {
+    form: document.querySelector('.search-form'),
+    input: document.querySelector('.search_input'),
+    button: document.querySelector('.search_btn'),
+    gallery: document.querySelector('.gallery'),
 
-// webformatURL - посилання на маленьке зображення для списку карток.
-// largeImageURL - посилання на велике зображення.
-// tags - рядок з описом зображення. Підійде для атрибуту alt.
-// likes - кількість лайків.
-// views - кількість переглядів.
-// comments - кількість коментарів.
-// downloads - кількість завантажень.
+}    
+  
+    async function fetchGallery(value) {
+        try {
+             return await axios.get(`${BASE_URL}/?key=${API_KEY}&q=null&image_type=photo&orientation=horizontal&safesearch=true&colors=turquoise`);
+        } catch (err) {
+            Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
+            return err;
+        }
+     }
+
+refs.form.addEventListener('submit', handleSearchImages);
+
+function handleSearchImages(event) {
+    event.preventDefault();
+    console.log(event);
+    
+
+
+}
+
+
+
+// function createImagesMurkup(images) {
+// images.map(({webformatURL, tags, likes, views, comments, downloads }) => {return `<div class="photo-card">
+//   <img class="photo-img" src="${webformatURL}" alt="${tags}" loading="lazy" />
+//   <div class="info">
+//     <p class="info-item">
+//       <b>Likes</b>${likes}
+//     </p>
+//     <p class="info-item">
+//       <b>Views</b>${views}
+//     </p>
+//     <p class="info-item">
+//       <b>Comments</b>${comments}
+//     </p>
+//     <p class="info-item">
+//       <b>Downloads</b>${downloads}
+//     </p>
+//   </div>
+// </div>`
+// }).join('')
+//     console.log(images);
+// }
+// console.log(createImagesMurkup());

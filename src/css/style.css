@@ -27,12 +27,7 @@ img {
     width: 100%;
     height: auto;
 }
-.container {
-    margin: 0 auto;
-    padding-left: 15px;
-    padding-right: 15px;
-   
-}
+
 .search-form {
     margin: 0 auto;
     display: flex;
@@ -63,6 +58,10 @@ img {
     fill: #838383
 }
 .search-form_wrap {
-    display: flex;
     background: linear-gradient(90deg, #e3e6e5, #03ada2);
+}
+.wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
