@@ -1,60 +1,64 @@
-import axios from "axios";
-import { fetchimages } from './js/fetchimages';
 import Notiflix from 'notiflix';
-import SimpleLightbox from "simplelightbox";
 import SimpleLightbox from "simplelightbox/dist/simple-lightbox.esm";
-
-const BASE_URL = 'https://pixabay.com/api';
-const API_KEY = '35093181-a8049340061a9729261476a01';
+import PixabayApiService from './js/fetchimages';
 
 const refs = {
-    form: document.querySelector('.search-form'),
-    input: document.querySelector('.search_input'),
-    button: document.querySelector('.search_btn'),
-    gallery: document.querySelector('.gallery'),
+  form: document.querySelector('.search-form'),
+  input: document.querySelector('.search_input'),
+  button: document.querySelector('.search_btn'),
+  gallery: document.querySelector('.gallery'),
+};
 
-}    
-  
-    async function fetchGallery(value) {
-        try {
-             return await axios.get(`${BASE_URL}/?key=${API_KEY}&q=null&image_type=photo&orientation=horizontal&safesearch=true&colors=turquoise`);
-        } catch (err) {
-            Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
-            return err;
-        }
-     }
+const newPixabayApiService = new PixabayApiService();
 
 refs.form.addEventListener('submit', handleSearchImages);
 
-function handleSearchImages(event) {
-    event.preventDefault();
-    console.log(event);
-    
+async function handleSearchImages(event) {
+  event.preventDefault();
 
+  newPixabayApiService.query = event.currentTarget.searchQuery.value.trim();
+  console.log(newPixabayApiService.query);
+  newPixabayApiService.resetPage();
+  refs.gallery.innerHTML = '';
 
+  try {
+    const response = await newPixabayApiService.fetchGallery();
+    const hits = response.data.hits;
+
+    if (hits.length === 0) {
+      Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
+      return;
+    }
+
+    const imagesMarkup = createImagesMarkup(hits);
+    refs.gallery.innerHTML = imagesMarkup;
+
+    const lightbox = new SimpleLightbox('.photo-img');
+    lightbox.on('error', (error) => console.log(`SimpleLightbox error: ${error.message}`));
+  } catch (error) {
+    console.log(error);
+    Notiflix.Notify.failure('Oops, something went wrong...');
+  }
 }
 
-
-
-// function createImagesMurkup(images) {
-// images.map(({webformatURL, tags, likes, views, comments, downloads }) => {return `<div class="photo-card">
-//   <img class="photo-img" src="${webformatURL}" alt="${tags}" loading="lazy" />
-//   <div class="info">
-//     <p class="info-item">
-//       <b>Likes</b>${likes}
-//     </p>
-//     <p class="info-item">
-//       <b>Views</b>${views}
-//     </p>
-//     <p class="info-item">
-//       <b>Comments</b>${comments}
-//     </p>
-//     <p class="info-item">
-//       <b>Downloads</b>${downloads}
-//     </p>
-//   </div>
-// </div>`
-// }).join('')
-//     console.log(images);
-// }
-// console.log(createImagesMurkup());
+function createImagesMarkup(images) {
+  return images.map(({ webformatURL, tags, likes, views, comments, downloads }) => {
+    return `<div class="photo-card">
+              <img class="photo-img" src="${webformatURL}" alt="${tags}" loading="lazy" />
+              <div class="info">
+                <p class="info-item">
+                  <b>Likes</b>${likes}
+                </p>
+                <p class="info-item">
+                  <b>Views</b>${views}
+                </p>
+                <p class="info-item">
+                  <b>Comments</b>${comments}
+                </p>
+                <p class="info-item">
+                  <b>Downloads</b>${downloads}
+                </p>
+              </div>
+            </div>`;
+  }).join('');
+}

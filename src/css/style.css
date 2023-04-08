@@ -27,7 +27,11 @@ img {
     width: 100%;
     height: auto;
 }
-
+.container {
+    width: 1400px;
+    margin: 0 auto;
+    padding: 30px 15px;
+}
 .search-form {
     margin: 0 auto;
     display: flex;
@@ -36,7 +40,6 @@ img {
 .search_input {
     height: 50px;
     padding-left: 16px;
-    margin-bottom: 20px;
     border: 1px solid #838383;
     border-right: none;
     border-radius: 8px 0 0 8px;
@@ -58,10 +61,30 @@ img {
     fill: #838383
 }
 .search-form_wrap {
+    padding: 16px 0;
     background: linear-gradient(90deg, #e3e6e5, #03ada2);
 }
 .wrap {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.photo-card {
+    width: calc((100% - 45px) / 3);
+}
+.info {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    color: #3a3939;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2)
+}
+.info-item {
+    display: flex;
+    gap: 8px;
 }
