@@ -42,25 +42,27 @@ async function handleSearchImages(event) {
 }
 
 function createImagesMarkup(images) {
-  return images.map(({ webformatURL, tags, likes, views, comments, downloads }) => {
+  return images.map(({ webformatURL, tags}) => {
     return `<div class="photo-card">
-              <div class="photo-img-wrap>
-              <img class="photo-img" src="${webformatURL}" alt="${tags}" loading="lazy" />
-             </div>
-              <div class="info">
-                <p class="info-item">
-                  <b>Likes</b>${likes}
-                </p>
-                <p class="info-item">
-                  <b>Views</b>${views}
-                </p>
-                <p class="info-item">
-                  <b>Comments</b>${comments}
-                </p>
-                <p class="info-item">
-                  <b>Downloads</b>${downloads}
-                </p>
-              </div>
-            </div>`;
+              <img class="photo-img" src="${webformatURL}" alt="${tags}" loading="lazy" />            </div>`
   }).join('');
 }
+// `<div class="photo-card">
+//               <div class="photo-img-wrap">
+//               <img class="photo-img" src="${webformatURL}" alt="${tags}" loading="lazy" />
+//              </div>
+//               <div class="info">
+//                 <p class="info-item">
+//                   <b>Likes</b>${likes}
+//                 </p>
+//                 <p class="info-item">
+//                   <b>Views</b>${views}
+//                 </p>
+//                 <p class="info-item">
+//                   <b>Comments</b>${comments}
+//                 </p>
+//                 <p class="info-item">
+//                   <b>Downloads</b>${downloads}
+//                 </p>
+//               </div>
+//             </div>`;
