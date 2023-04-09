@@ -73,14 +73,21 @@ img {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+  
+
 }
 .photo-card {
     width: calc((100% - 45px) / 3);
 }
+
+/* .photo-img {
+    width: 100%;
+} */
 .info {
+    height: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 8px;
+    padding: 14px 8px;
     color: #3a3939;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2)
 }
