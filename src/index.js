@@ -44,9 +44,9 @@ async function handleSearchImages(event) {
 function createImagesMarkup(images) {
   return images.map(({ webformatURL, tags, likes, views, comments, downloads }) => {
     return `<div class="photo-card">
-              
+              <div class="photo-img-wrap>
               <img class="photo-img" src="${webformatURL}" alt="${tags}" loading="lazy" />
-             
+             </div>
               <div class="info">
                 <p class="info-item">
                   <b>Likes</b>${likes}

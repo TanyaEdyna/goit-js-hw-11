@@ -8,7 +8,7 @@ export default class PixabayApiService {//клас з методом fetchGaller
     }
     
     fetchGallery() {//метод
-        const BASE_URL = 'https://pixabay.com/api';
+        const BASE_URL = 'https://pixabay.com/api/';
         const API_KEY = '35093181-a8049340061a9729261476a01';
         const response = axios.get(`${BASE_URL}?key=${API_KEY}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=${this.quantity}`);//get запит до API Pixabay
         this.incrementPage();//метод збільшує значення page += 1
