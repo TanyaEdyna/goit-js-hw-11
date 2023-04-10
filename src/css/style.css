@@ -3,7 +3,7 @@
     box-sizing: border-box;
 }
 body {
-margin: 0;
+    margin: 0;
     font-family: "Roboto", sans-serif;
     background-color: #fafafa;
     font-size: 16px;
@@ -13,7 +13,7 @@ p {
     margin: 0;
 }
 input {
-    padding: 24px;
+    padding: 24px 108px;
     font: inherit;
     border: none;
     outline: none;
@@ -86,6 +86,7 @@ img {
     flex-wrap: wrap;
     gap: 16px;
     padding: 0 0 0 14px;
+    margin-bottom: 32px;
 }
 .photo-card {
     position: relative;
@@ -113,5 +114,20 @@ img {
     padding: 8px;
     border-radius: 0 0 16px 16px;
     color: #fafafa;
+}
+.load-more {
+    display: block;
+    margin: 0 auto;
+    width: 172px;
+    height: 48px;
+    border-radius: 8px;
+    background-color: #03ada2;
+    color: #fafafa;
+    margin-bottom: 32px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    outline: none;
+
 }
 
